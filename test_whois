@@ -1,0 +1,12 @@
+import csv
+
+a = []
+csvReader = csv.reader(open('test.txt','r'), quoting=csv.QUOTE_NONE)
+for row in csvReader:
+    row = "".join(row)
+    a.append(row)
+    
+
+for dom in a:
+    a = dom + ' - domain status'
+    print (a)
