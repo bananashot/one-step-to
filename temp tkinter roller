@@ -1,14 +1,4 @@
-import tkinter as tk
-
-#def fahrenheit_to_celsius():
-#    """Convert the value for Fahrenheit to Celsius and insert the
-#    result into lbl_result.
-#    """
-#    fahrenheit = ent_temperature.get()
-#    celsius = (5/9) * (float(fahrenheit) - 32)
-#    lbl_result["text"] = f"{round(celsius, 2)} \N{DEGREE CELSIUS}"
-    
-    
+import tkinter as tk  
 import random
 
 def random_n_tries():
@@ -36,69 +26,68 @@ def random_n_tries():
         lbl_result["text"] = f" You are loser!"
     return
 
-#def random_n_tries_cursed(n):
-#    
-#    succes_counter = 0
-#    
-#    for i in range(0, n-1):
-#        tryroll = random.randint(1, 6)
-#        if tryroll == 6:
-#            succes_counter = succes_counter + 1
-#        else:
-#            continue
-#        i = i + 1
-#        
-#    if succes_counter > 0:
-#        print('\n' + 'You have ' + str(succes_counter) + ' *cursed* successes out of ' + str(n) + '.')
-#    
-#    else:
-#        print('\n' + 'You are loser, and you deserve this, cursed child...')
-#    return
-#
-#def random_n_tries_blessed(n):
-#    
-#    succes_counter = 0
-#    succes5 = 0
-#    succes6 = 0
-#    succes4 = 0
-#    
-#    for i in range(0, n-1):
-#        tryroll = random.randint(1, 6)
-#        if tryroll >= 4:
-#            if tryroll == 5:
-#                succes5 = succes5 + 1
-#            elif tryroll == 6:   
-#                succes6 = succes6 + 1
-#            elif tryroll == 4:   
-#                succes4 = succes4 + 1
-#            succes_counter = succes_counter + 1
-#        else:
-#            continue
-#        i = i + 1
-#        
-#    if succes_counter > 0:
-#        print('\n' + 'You have ' + str(succes_counter) + ' *blessed* successes out of ' + str(n) + '.')
-#        print('The number of 4 sides: ' + str(succes5) + '\nThe number of 5 sides: ' + str(succes5) + '\nThe number of 6 sides: ' + str(succes6))
-#   
-#    else:
-#        print('\n' + 'You are a loser for life even with blessing...')
-#    return
-#
-#def number_on_dice():
-#    
-#    i = random.randint(1, 6)
-#    print( '\n' + 'You have rolled ' + str(i))
+def random_n_tries_blessed():
+    
+    succes_counter = 0
+    succes4 = 0
+    succes5 = 0
+    succes6 = 0
+    n = tries.get()
+    for i in range(int(n)):
+        tryroll = random.randint(1, 6)
+        if tryroll >= 4:
+            if tryroll == 5:
+                succes5 = succes5 + 1
+            elif tryroll == 6:   
+                succes6 = succes6 + 1
+            elif tryroll == 4:
+                succes4 = succes4 + 1
+            succes_counter = succes_counter + 1
+        else:
+            continue
+        i = i + 1
+        
+    if succes_counter > 0:
+        lbl_result["text"] = f" You have successes: {str(succes_counter)} out of {str(n)} \n The number of 4 sides: {str(succes4)} \n The number of 5 sides: {str(succes5)} \n The number of 6 sides: {str(succes6)}"
+        
+    else:
+        lbl_result["text"] = f" You are loser!"
+    return
+
+def random_n_tries_c():
+    
+    succes_counter = 0
+    n = tries.get()
+    for i in range(int(n)):
+        tryroll = random.randint(1, 6)
+        if tryroll > 5:
+            succes_counter = succes_counter + 1
+        else:
+            continue
+        i = i + 1
+        
+    if succes_counter > 0:
+        lbl_result["text"] = f" You have successes: {str(succes_counter)} out of {str(n)} \n All of them are 6 sides."
+        
+    else:
+        lbl_result["text"] = f" You are loser!"
+    return
+
+def number_on_die():
+    
+    i = random.randint(1, 6)
+    lbl_result["text"] = f" Your gay's roll is - {str(i)}"
 
 # Set-up the window
 window = tk.Tk()
-window.title("dice roller")
+window.title("Uzhos Arkhema!")
 window.resizable(width=True, height=True)
 
-# Create the Fahrenheit entry frame with an Entry
+# Create the entry frame with an Entry
 # widget and label in it
 frm_entry = tk.Frame(master=window)
 tries = tk.Entry(master=frm_entry, width=10)
-lbl_temp = tk.Label(master=frm_entry, text="roll")
+lbl_temp = tk.Label(master=frm_entry, text="Number of dice here")
 
 # Layout the temperature Entry and Label in frm_entry
 # using the .grid() geometry manager
@@ -106,17 +95,40 @@ tries.grid(row=0, column=0, sticky="e")
 lbl_temp.grid(row=0, column=1, sticky="w")
 
 # Create the conversion Button and result display Label
-btn_convert = tk.Button(
+btn_convert_n = tk.Button(
     master=window,
     text="\N{RIGHTWARDS BLACK ARROW}",
     command=random_n_tries
 )
-lbl_result = tk.Label(master=window, text="Roll this shit, I'm out!")
+
+btn_convert_b = tk.Button(
+    master=window,
+    text="\N{BLACK RIGHT-POINTING TRIANGLE}\n ~ Blessed! ~",
+    command=random_n_tries_blessed
+)
+
+btn_convert_c = tk.Button(
+    master=window,
+    text="\N{LONG RIGHTWARDS SQUIGGLE ARROW} \n = Cursed! =",
+    command=random_n_tries_c
+)
+
+btn_roll = tk.Button(
+    master=window,
+    text="\N{DOUBLED MALE SIGN} \n Roll number on 1 die\n because I'm gay!",
+    command=number_on_die
+)
+
+
+lbl_result = tk.Label(master=window, text="Try this!")
 
 # Set-up the layout using the .grid() geometry manager
-frm_entry.grid(row=0, column=0, padx=10)
-btn_convert.grid(row=0, column=1, pady=10)
-lbl_result.grid(row=0, column=2, padx=10)
+frm_entry.grid(row=1, column=0, padx=10)
+btn_convert_n.grid(row=0, column=1, padx=10)
+btn_convert_b.grid(row=1, column=1, padx=10, pady=10)
+btn_convert_c.grid(row=2, column=1, padx=10)
+lbl_result.grid(row=1, column=2, padx=30)
+btn_roll.grid(row=2, column=0, padx=0)
 
 # Run the application
 window.mainloop()
