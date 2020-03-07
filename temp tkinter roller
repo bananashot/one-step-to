@@ -116,7 +116,7 @@ lbl_result = tk.Label(master=window, text="Roll this shit, I'm out!")
 # Set-up the layout using the .grid() geometry manager
 frm_entry.grid(row=0, column=0, padx=10)
 btn_convert.grid(row=0, column=1, pady=10)
-lbl_result.grid(row=3, column=0, pady=30)
+lbl_result.grid(row=0, column=2, padx=10)
 
 # Run the application
 window.mainloop()
